@@ -39,5 +39,40 @@ public function create(Request $request){
 
     return response()->json($message,Response::HTTP_CREATED);
 }
+
+public function update(Request $request){
+
+    $idcontactos = $request->query("id");
+    $usuarios = new Contactos();
+    $contactosparticular = $usuarios->find($idcontactos);
+
+    $contactosparticular->Nombre = $request->input("Nombre");
+    $contactosparticular->Identificacion = $request->input("Identificacion");
+    $contactosparticular->Telefono = $request->input("Telefono");
+    $contactosparticular->Correo = $request->input("Correo");
+    $contactosparticular->Residencia = $request->input("Residencia");
+
+    $contactosparticular->save();
+    $message=[
+        "message" => "Actualizacion Exitoso!!",
+        "idcontactos" => $request->query("id"),
+    ];
+    return $message;
+}
+
+public function delete(Request $request){
+
+    $idcontactos = $request->query("id");
+    $usuarios = new Contactos();
+    $contactosparticular = $usuarios->find($idcontactos);
+
+    $contactosparticular->delete();
+
+    $message=[
+        "message" => "Eliminacion Exitoso!!",
+        "idcontactos" => $request->query("id"),
+    ];
+    return $message;
+}
 }
 

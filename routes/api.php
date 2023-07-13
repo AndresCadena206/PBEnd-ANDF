@@ -17,12 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/usuarios1',[UsuariosController::class,'read']);
 Route::post('/usuarios2',[UsuariosController::class,'create']);
-Route::patch('/usuarios3',[UsuariosController::class,'update']);
+Route::put('/usuarios3',[UsuariosController::class,'update']);
 Route::delete('/usuarios4',[UsuariosController::class,'delete']);
 
 
 Route::get('/peticion',[ContactosController::class, 'read']);
 Route::post('/crear',[ContactosController::class,'create']);
+Route::put('/actualizar',[ContactosController::class,'update']);
+Route::delete('/eliminar',[ContactosController::class,'delete']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
